@@ -11,40 +11,46 @@ struct node
 	int data;
 	struct node *link;
 };
-void read(int, struct node*);
-void insertLast(int, struct node*);
-void display(struct node*);
-void sortingLLWithEleInAsc_Desc(struct node* h);
-void swap(int *, int*);
+void read(int, struct node*);//reading values from input
+void insertLast(int, struct node*);//inserting element at the last postion in linkedlist
+void display(struct node*);//displaying linkedlist
+void sortingLLWithEleInAsc_Desc(struct node* h);//sorting linkedlist
+void swap(int *, int*);//swapping values
 int main()
 {
 	struct node* h = (struct node*)malloc(sizeof(struct node));
 	int n;
 	printf("enter no. of elements");
 	scanf_s("%d", &n);
+	if(n<0)
+		printf("invalid input");
 	printf("enter %d elements : ", n);
-	read(n, h); //using insert last algorithm
+	read(n, h);  //using insert last algorithm
 	sortingLLWithEleInAsc_Desc(h->link);
 	_getch();
 }
 void sortingLLWithEleInAsc_Desc(struct node* h)
 {
+	//when there is a single element or no elemets in linkedlist
 	if (h->link == NULL || h == NULL)
 		printf("Linked list is already in ascending order");
 	else
 	{
 		struct node *p = h, *q = h, *prev = NULL, *prev1 = NULL, *temp;
+		//make q to point to number from where desc order begins
 		while ((q->link)&&(q->data < q->link->data))
 			q = q->link;
-		printf("%d\n", q->data);
+		//arranging elements in order 
 		do
 		{
 			temp = q;
+			//traversing till last but one node of linkedlist
 			while (temp->link)
 			{				
 				prev1 = temp;
 				temp = temp->link;
 			}
+			//making last but one as last node and finding position of last node
 			prev1->link = NULL;
 			display(h);
 			while (p&&(p->data < temp->data))

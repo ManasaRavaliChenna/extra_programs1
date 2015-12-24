@@ -1,3 +1,5 @@
+/*4.Reverse an Linked list , using recursion (There are two approaches )
+*/
 #include<stdio.h>
 #include<conio.h>
 #include<malloc.h>
@@ -6,10 +8,10 @@ struct node
 	int data;
 	struct node *link;
 };
-void insertLast(int, struct node*h);
-void read(struct node*);
-void reverseUsingExtraList(struct node *head1, struct node *head2);
-void display(struct node * ll);
+void insertLast(int, struct node*h);//adding node at the end
+void read(struct node*);//reading values from input
+void reverseUsingExtraList(struct node *head1, struct node *head2);//reversing liked list without using extra list
+void display(struct node * ll);//display linkedlist
 int main()
 {
 	struct node *head = (struct node*)malloc(sizeof(struct node));
@@ -26,6 +28,7 @@ void reverseUsingExtraList(struct node *head, struct node *rev)
 		return;
 	else
 	{
+		//taking a node from first position of head and inserting it onto the last postion of rev
 		struct node*q = head;
 		head = head->link;
 		q->link = rev->link;
